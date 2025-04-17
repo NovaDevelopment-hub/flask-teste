@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Administração</title>
+</head>
+<body>
+  <h2>Dados Cadastrados</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cadastros %}
+      <tr>
+        <td>{{ item.nome }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.telefone }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

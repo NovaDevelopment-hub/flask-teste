@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Usuário</title>
+</head>
+<body>
+  <h2>Formulário</h2>
+  <form id="cadastroForm">
+    <label>Nome: <input type="text" name="nome" required></label><br>
+    <label>Email: <input type="email" name="email" required></label><br>
+    <label>Telefone: <input type="tel" name="telefone"></label><br><br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("cadastroForm");
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const dados = {
+        nome: form.nome.value,
+        email: form.email.value,
+        telefone: form.telefone.value
+      };
+
+      const resposta = await fetch("/enviar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dados)
+      });
+
+      const resultado = await resposta.json();
+      if (resultado.status === "ok") {
+        alert("Cadastro enviado!");
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
